@@ -1,0 +1,78 @@
+{
+  "$schema": "link/to/draft-07",
+  "$id": "link/to/id",
+  "title": "Dictionary entry schema",
+  "description": "A schema to map words to concepts",
+  "type": "object",
+  "properties": {
+    "konsep": {
+      "description": "A container to hold a list of meanings with respect to each contexts",
+      "type": "array",
+      "items": {
+        "type": "objects",
+        "required": ["konteks", "makna"],
+        "properties": {
+          "konteks": {
+            "description": "A list of contexts in which the meaning is used (in shortened form, should be found in '.metadata')",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minlength": 3,
+              "maxlength": 5
+            }
+          },
+          "makna": {
+            "description": "The meaning of the word in the context given above",
+            "type": "string"
+          },
+          "ragam_istilah": {
+            "description": "Other words used to mean the same thing",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contoh_ayat": {
+            "description": "Example sentences where the word is used with such meaning",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contoh_frasa": {
+            "description": "Example phrases where the word is used with such meaning",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "berkaitan": {
+            "description": "A list of related words",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "terjemahan": {
+            "description": "A list of word from different language with the same meaning {'lang_id':list(string)}",
+            "type": "object"
+          }
+        }
+      }
+    },
+    "ragam_ejaan": {
+      "description": "A list of different spellings used for the same word",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "akar": {
+      "description": "A deconstruction of the word form",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
