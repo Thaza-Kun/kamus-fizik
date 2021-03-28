@@ -1,5 +1,8 @@
 import json
-base_dir = 'kamus_db/entri_ms/'
+import os
+
+file_dir = os.path.realpath('.')
+base_dir = os.path.join('kamus_db', 'entri_ms')
 
 class kata:
     """
@@ -39,22 +42,29 @@ class kata:
 
 class masuk:
 # TODO cari cara untuk masukkan kata
-    def baharu(self):
-        # Untuk masukkan kata yang baharu
-        # TODO wujudkan folder 'kata' dalam 'kamus_db/entri_ms_<nama_kamus>'
-        # TODO wujudkan fail JSON 'data.json' dalam folder 'kamus_db/entri_ms_<nama_kamus>/<kata>/'
-        pass
+# TODO wujudkan conditional untuk bezakan bila nak guna masuk.baharu atau masuk.tambah
+    @staticmethod
+    def baharu(entri, data):                        # Untuk masukkan kata yang baharu
+        data = data.pop('kata')                     # Kita tidak perlukan data kata dalam fail json
+        PATH = os.path.join(file_dir, base_dir, entri)
+        print(PATH)
+        os.mkdir(PATH)                              # Untuk wujudkan folder 'kata' dalam 'kamus_db/entri_ms/'
+        with open(PATH + '/data.json', 'w') as f:   # Untuk wujudkan fail JSON 'data.json' dalam folder 'kamus_db/entri_ms_<nama_kamus>/<kata>/'
+            json.dump(data, f, indent=4)
 
+    @staticmethod
     def tambah(self):
         # Untuk tambah makna
+        # TODO Tambah makna untuk kata yang sudah wujud
         pass
-
 
 string = input("Masukkan kata yang ingin dicari: ")
 entri = kata(string)
-makna = input("Apakah maknanya?: ")
+print(file_dir + '\\' + base_dir + string)
+makna = input( "Apakah maknanya?: ")
 bidang2 = input("Dalam bidang apa? (dipisahkan koma): ")
 bidang = bidang2.split(",")
 entri.makna(makna, bidang)
 print("Hello World!")
+masuk.baharu(string, entri.to_dict())
 print(entri.to_dict())
