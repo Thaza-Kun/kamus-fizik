@@ -6,11 +6,11 @@
   "type": "object",
   "properties": {
     "konsep": {
-      "required": ["konteks", "makna"],
       "description": "A container to hold a list of meanings with respect to each contexts",
       "type": "array",
       "items": {
         "type": "objects",
+        "required": ["konteks", "makna"],
         "properties": {
           "konteks": {
             "description": "A list of contexts in which the meaning is used (in shortened form, should be found in '.metadata')",
